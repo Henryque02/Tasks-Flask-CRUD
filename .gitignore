@@ -1,7 +1,3 @@
-# UV
-uv.lock
-.python-version
-
 # Environments
 .venv
 
