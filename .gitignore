@@ -1,5 +1,4 @@
 # Environments
 .venv
 
-/assets
 __pycache__
