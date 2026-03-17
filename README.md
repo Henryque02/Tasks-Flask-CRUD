@@ -1,110 +1,108 @@
 # Tasks Flask CRUD
 
-A simple REST API for managing tasks, built with Python and Flask. This project demonstrates the fundamentals of CRUD (Create, Read, Update, Delete) operations using an in-memory data store.
+Uma API REST simples para gerenciamento de tarefas, construída com Python e Flask. Este projeto demonstra os fundamentos das operações CRUD (Create, Read, Update, Delete) utilizando armazenamento em memória.
 
-## Table of Contents
+## Índice
 
-- [About the Project](#about-the-project)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the Server](#running-the-server)
-- [API Endpoints](#api-endpoints)
-  - [Create a Task](#create-a-task)
-  - [Get All Tasks](#get-all-tasks)
-  - [Get a Task by ID](#get-a-task-by-id)
-  - [Update a Task](#update-a-task)
-  - [Delete a Task](#delete-a-task)
-- [Running Tests](#running-tests)
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Como Começar](#como-começar)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Instalação](#instalação)
+  - [Executando o Servidor](#executando-o-servidor)
+- [Endpoints da API](#endpoints-da-api)
+  - [Criar uma Tarefa](#criar-uma-tarefa)
+  - [Listar Todas as Tarefas](#listar-todas-as-tarefas)
+  - [Buscar Tarefa por ID](#buscar-tarefa-por-id)
+  - [Atualizar uma Tarefa](#atualizar-uma-tarefa)
+  - [Deletar uma Tarefa](#deletar-uma-tarefa)
+- [Executando os Testes](#executando-os-testes)
 
 ---
 
-## About the Project
+## Sobre o Projeto
 
-This API allows you to manage a list of tasks. Each task has a title, an optional description, and a completion status. All data is stored in memory, so it is reset every time the server restarts. It is intended as a learning resource for Flask REST API development.
+Esta API permite gerenciar uma lista de tarefas. Cada tarefa possui um título, uma descrição opcional e um status de conclusão. Todos os dados são armazenados em memória, ou seja, são redefinidos toda vez que o servidor é reiniciado. O projeto é voltado para aprendizado de desenvolvimento de APIs REST com Flask.
 
-## Tech Stack
+## Tecnologias Utilizadas
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| Python | 3.12+ | Programming language |
-| Flask | ≥ 3.1.3 | Web framework |
-| Werkzeug | ≥ 3.1.6 | WSGI utilities (Flask dependency) |
-| pytest | 7.4.3 | Testing framework |
-| requests | 2.31.0 | HTTP client used in tests |
-| uv | — | Fast Python package manager |
+| Ferramenta | Versão | Finalidade |
+|------------|--------|------------|
+| Python | 3.12+ | Linguagem de programação |
+| Flask | ≥ 3.1.3 | Framework web |
+| Werkzeug | ≥ 3.1.6 | Utilitários WSGI (dependência do Flask) |
+| pytest | 7.4.3 | Framework de testes |
+| requests | 2.31.0 | Cliente HTTP utilizado nos testes |
+| uv | — | Gerenciador de pacotes Python moderno |
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 Tasks-Flask-CRUD/
-├── app.py                    # Flask application and route definitions
+├── app.py                    # Aplicação Flask e definição das rotas
 ├── models/
-│   └── task.py              # Task model class
-├── tests.py                 # Integration tests
-├── pyproject.toml           # Project metadata and dependencies
-├── uv.lock                  # Locked dependency versions
+│   └── task.py              # Classe do modelo de Tarefa
+├── tests.py                 # Testes de integração
+├── pyproject.toml           # Metadados e dependências do projeto
+├── uv.lock                  # Versões fixadas das dependências
 ├── assets/
-│   ├── documentation.x-yaml # OpenAPI 3.0 specification
-│   └── postman.x-yaml       # Postman collection
+│   ├── documentation.x-yaml # Especificação OpenAPI 3.0
+│   └── postman.x-yaml       # Coleção do Postman
 └── README.md
 ```
 
-## Getting Started
+## Como Começar
 
-### Prerequisites
+### Pré-requisitos
 
-- Python 3.12 or higher
-- [uv](https://docs.astral.sh/uv/) (recommended) **or** pip
+- Python 3.12 ou superior
+- [uv](https://docs.astral.sh/uv/) (recomendado) **ou** pip
 
-### Installation
+### Instalação
 
-**Using uv (recommended):**
+**Usando uv (recomendado):**
 
 ```bash
 uv sync
 ```
 
-**Using pip:**
+**Usando pip:**
 
 ```bash
 pip install flask werkzeug
 ```
 
-### Running the Server
+### Executando o Servidor
 
 ```bash
 python app.py
 ```
 
-The server will start in debug mode and be available at `http://127.0.0.1:5000`.
+O servidor iniciará em modo de depuração e estará disponível em `http://127.0.0.1:5000`.
 
 ---
 
-## API Endpoints
+## Endpoints da API
 
-> **Note:** The API returns response messages in Portuguese.
-
-### Create a Task
+### Criar uma Tarefa
 
 **POST** `/tasks`
 
-Creates a new task.
+Cria uma nova tarefa.
 
-**Request body:**
+**Corpo da requisição:**
 
 ```json
 {
-  "title": "Buy groceries",
-  "description": "Milk, eggs, bread"
+  "title": "Comprar mantimentos",
+  "description": "Leite, ovos, pão"
 }
 ```
 
-> `description` is optional.
+> `description` é opcional.
 
-**Response** `200 OK`:
+**Resposta** `200 OK`:
 
 ```json
 {
@@ -115,21 +113,21 @@ Creates a new task.
 
 ---
 
-### Get All Tasks
+### Listar Todas as Tarefas
 
 **GET** `/tasks`
 
-Returns a list of all tasks.
+Retorna a lista de todas as tarefas.
 
-**Response** `200 OK`:
+**Resposta** `200 OK`:
 
 ```json
 {
   "tasks": [
     {
       "id": 1,
-      "title": "Buy groceries",
-      "description": "Milk, eggs, bread",
+      "title": "Comprar mantimentos",
+      "description": "Leite, ovos, pão",
       "completed": false
     }
   ],
@@ -139,24 +137,24 @@ Returns a list of all tasks.
 
 ---
 
-### Get a Task by ID
+### Buscar Tarefa por ID
 
 **GET** `/tasks/<id>`
 
-Returns a single task by its ID.
+Retorna uma única tarefa pelo seu ID.
 
-**Response** `200 OK`:
+**Resposta** `200 OK`:
 
 ```json
 {
   "id": 1,
-  "title": "Buy groceries",
-  "description": "Milk, eggs, bread",
+  "title": "Comprar mantimentos",
+  "description": "Leite, ovos, pão",
   "completed": false
 }
 ```
 
-**Response** `404 Not Found`:
+**Resposta** `404 Not Found`:
 
 ```json
 {
@@ -166,23 +164,23 @@ Returns a single task by its ID.
 
 ---
 
-### Update a Task
+### Atualizar uma Tarefa
 
 **PUT** `/tasks/<id>`
 
-Updates the title, description, and completion status of a task.
+Atualiza o título, a descrição e o status de conclusão de uma tarefa.
 
-**Request body:**
+**Corpo da requisição:**
 
 ```json
 {
-  "title": "Buy groceries",
-  "description": "Milk, eggs, bread, butter",
+  "title": "Comprar mantimentos",
+  "description": "Leite, ovos, pão, manteiga",
   "completed": true
 }
 ```
 
-**Response** `200 OK`:
+**Resposta** `200 OK`:
 
 ```json
 {
@@ -190,7 +188,7 @@ Updates the title, description, and completion status of a task.
 }
 ```
 
-**Response** `404 Not Found`:
+**Resposta** `404 Not Found`:
 
 ```json
 {
@@ -200,13 +198,13 @@ Updates the title, description, and completion status of a task.
 
 ---
 
-### Delete a Task
+### Deletar uma Tarefa
 
 **DELETE** `/tasks/<id>`
 
-Deletes a task by its ID.
+Deleta uma tarefa pelo seu ID.
 
-**Response** `200 OK`:
+**Resposta** `200 OK`:
 
 ```json
 {
@@ -214,7 +212,7 @@ Deletes a task by its ID.
 }
 ```
 
-**Response** `404 Not Found`:
+**Resposta** `404 Not Found`:
 
 ```json
 {
@@ -224,17 +222,17 @@ Deletes a task by its ID.
 
 ---
 
-## Running Tests
+## Executando os Testes
 
-The test suite uses `pytest` and makes live HTTP requests, so **the Flask server must be running** before executing the tests.
+A suíte de testes utiliza `pytest` e faz requisições HTTP reais, portanto **o servidor Flask precisa estar em execução** antes de rodar os testes.
 
-1. Start the server in one terminal:
+1. Inicie o servidor em um terminal:
 
 ```bash
 python app.py
 ```
 
-2. In a second terminal, run the tests:
+2. Em outro terminal, execute os testes:
 
 ```bash
 pytest tests.py -v
